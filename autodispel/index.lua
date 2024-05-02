@@ -11,9 +11,7 @@ function useDispelGem()
 end
 
 function handleEnchantmentChanged(evt)
-    --[autodispell] Enchantment Cat:  EnduranceRaising Effect:  0  Type: Added
     if evt.Type == AddRemoveEventType.Added then
-        --isBeneficial = bit32.band(evt.Enchantment.Flags.toNumber(), EnchantmentFlags.Beneficial)
         local isBeneficial = (evt.Enchantment.Flags + EnchantmentFlags.Beneficial) == evt.Enchantment.Flags        
         if isBeneficial == false then
             print ("Detected a debuff i think: ", evt.Enchantment.Category)          
@@ -24,9 +22,6 @@ function handleEnchantmentChanged(evt)
 end
 
 game.Character.OnEnchantmentsChanged.Add(handleEnchantmentChanged)
---game.OnScriptEnd.Once(function()
---    game.Character.OnEnchantmentsChanged.Remove(handleEnchantmentChanged)
---  end)
 
 
 
